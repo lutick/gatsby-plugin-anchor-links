@@ -4,7 +4,8 @@ import { Link } from "gatsby";
 import {
   handleLinkClick,
   stripHashedLocation,
-  handleStrippedLinkClick
+  handleStrippedLinkClick,
+  isBrowser
 } from "../utils";
 import { anchorLinkTypes } from "../types";
 
@@ -13,12 +14,32 @@ export function AnchorLink({
   title,
   children,
   className,
-  stripHash = false
+  stripHash = false,
+  onClick
 }) {
+  const handleClick = e => {
+    if (stripHash) {
+      handleStrippedLinkClick(to, e);
+    } else {
+      handleLinkClick(to, e);
+    }
+  };
   const linkProps = {
     to: stripHash ? stripHashedLocation(to) : to,
-    onClick: e =>
-      stripHash ? handleStrippedLinkClick(to, e) : handleLinkClick(to, e)
+    onClick: e => {
+      if (!onClick) {
+        handleClick(e);
+        return;
+      }
+
+      const isSamePage =
+        isBrowser && window.location.pathname === stripHashedLocation(to);
+      if (isSamePage) {
+        e.preventDefault();
+      }
+      onClick(e);
+      setImmediate(() => handleClick(e));
+    }
   };
 
   /**

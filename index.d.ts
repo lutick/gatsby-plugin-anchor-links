@@ -6,6 +6,7 @@ export interface AnchorLinkProps {
   className?: string;
   stripHash?: boolean;
   children?: React.ReactNode;
+  onClick?: React.MouseEvent<HTMLAnchorElement>;
 }
 
 export function AnchorLink(props: AnchorLinkProps): any;
