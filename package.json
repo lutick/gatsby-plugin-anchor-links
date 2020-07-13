@@ -1,15 +1,15 @@
 {
   "name": "gatsby-plugin-anchor-links",
   "version": "1.1.1",
-  "main": "index.js",
+  "main": "lib",
   "author": "Chase Ohlson <chase@chaseohlson.com>",
   "description": "Gatsby plugin for using anchor links with a Gatsby Link component.",
   "homepage": "https://github.com/brohlson/gatsby-plugin-anchor-links",
   "license": "MIT",
   "scripts": {
-    "build": "babel src/ --out-dir . --ignore __tests__",
+    "build": "babel lib/ --out-dir . --ignore __tests__",
     "format": "prettier --write \"**/*.{js,jsx,ts,json,md}\"",
-    "watch": "babel -w src/ --out-dir . --ignore __tests__"
+    "watch": "babel -w lib/ --out-dir . --ignore __tests__"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
